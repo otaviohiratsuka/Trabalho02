@@ -146,7 +146,6 @@ public class PistaNormal{
         return suporte_decolagem;
     }
 
-
     public List<Aviao> getDecolagem_1() {
         return decolagem_1;
     }

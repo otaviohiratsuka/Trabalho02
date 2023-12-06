@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+EKFOSG
+#!/usr/bin/env bash
+EFF
+##
