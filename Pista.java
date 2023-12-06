@@ -2,80 +2,25 @@ import java.util.ArrayList;
 
 
 public class Pista{
-    private ArrayList<Aviao> decolagem;
-    private ArrayList<Aviao> decolagem1;
-    private ArrayList<Aviao> aterrisagem;
-    private ArrayList<Aviao> aterrisagem1;
-    private ArrayList<Aviao> suporte;
-    private ArrayList<Aviao> prioritario; // percorrer 1 e 2, procurar risco(abaixo de 3min)
-    
-    public int comparacao(){
-        return ((decolagem.size()<decolagem1.size())?0:1);
-    }
+    private List<Aviao> decolagem_1;
+    private List<Aviao> decolagem_2;
 
-    public void adicionarDecolagem(){ //add decolagem (condição maior/ menor)
-        
-        
-    }
+    private List<Aviao> aterrisagem_1;
+    private List<Aviao> aterrisagem_2;
 
+    private List<Aviao> suporte_decolagem;
+    private List<Aviao> suporte_aterrisagem;
 
-    public void adicionarAterrisagem(){ //add pouso (condição maior/menor)
-
-
-    }
+    private List<Aviao> prioritario; // percorrer 1 e 2, procurar risco(abaixo de 3min)
     
 
-
-
-
-
-
-
-public ArrayList<Aviao> getDecolagem() {
-        return decolagem;
+    //adicionará o avião na pista de aterrisagem que tenha menos aviao
+    public void addAviaoAterrisagem(Aviao av){
+        if(decolagem_1.size() > decolagem_2.size()){
+            decolagem_2.add(add);
+        }
     }
 
-    public void setDecolagem(ArrayList<Aviao> decolagem) {
-        this.decolagem = decolagem;
-    }
 
-    public ArrayList<Aviao> getDecolagem1() {
-        return decolagem1;
-    }
 
-    public void setDecolagem1(ArrayList<Aviao> decolagem1) {
-        this.decolagem1 = decolagem1;
-    }
-
-    public ArrayList<Aviao> getAterrisagem() {
-        return aterrisagem;
-    }
-
-    public void setAterrisagem(ArrayList<Aviao> aterrisagem) {
-        this.aterrisagem = aterrisagem;
-    }
-
-    public ArrayList<Aviao> getAterrisagem1() {
-        return aterrisagem1;
-    }
-
-    public void setAterrisagem1(ArrayList<Aviao> aterrisagem1) {
-        this.aterrisagem1 = aterrisagem1;
-    }
-
-    public ArrayList<Aviao> getSuporte() {
-        return suporte;
-    }
-
-    public void setSuporte(ArrayList<Aviao> suporte) {
-        this.suporte = suporte;
-    }
-
-    public ArrayList<Aviao> getPrioritario() {
-        return prioritario;
-    }
-
-    public void setPrioritario(ArrayList<Aviao> prioritario) {
-        this.prioritario = prioritario;
-    }
 }
