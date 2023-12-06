@@ -12,6 +12,7 @@ public class Aeroporto{
     private List<Aviao> prioritario;
 
     public int controlador_decolagem;
+    
     public Aeroporto(){
         pista_1 = new PistaNormal();
         pista_2 = new PistaNormal();
@@ -33,9 +34,20 @@ public class Aeroporto{
             pista_2.addAviaoAterrisagem(av)
         }
     }
+
     public void adicionarDecolagem(Aviao av){
         if(controlador_decolagem != 3){
             pista_3.getDecolagem(av);
+            controlador_decolagem ++;
+        }
+        else{
+            if(pista_1.totalDecolagem()<pista_2.totalDecolagem()){
+                pista_1.addAviaoDecolagem(av);
+            }
+            else{
+                pista_2.addAviaoDecolagem(av);
+                controlador_decolagem = 0;
+            }
         }
     }
 
