@@ -34,7 +34,9 @@ public class App {
                     break;
             }
             
-            if (opc != 4) {    //a cada min, programa indica o que aconteceu.
+            if (opc != 4) {  //a cada min, programa indica o que aconteceu.
+                aeroporto.calcularTempoMedioEsperaAterrissagem();
+                System.out.println("Número de Aterrissagens de Emergência: " + aeroporto.getAterrissagensEmergenciais());
                 try {
                     Thread.sleep(intervaloAutomaticoSegundos * 1000);
                 } catch (InterruptedException e) {
