@@ -7,7 +7,7 @@ public class App {
         Aeroporto Aeroporto = new Aeroporto();
 
         int intervaloAutomaticoSegundos = 60;
-        String conteudoDoArquivo = lerArquivo(caminhoDoArquivo);
+        String conteudoDoArquivo = "Aviao.txt";
 
         do{
             System.out.println("Menu");
@@ -48,4 +48,45 @@ public class App {
             entrada.close();
         }
     }
+
+    public static void entradaArquivo(Aeroporto aeroporto) {
+        try {
+            Scanner arquivoScanner = new Scanner(new File("Aviao.txt"));
+
+            while (arquivoScanner.hasNextLine()) {
+                String linha = arquivoScanner.nextLine();
+
+                if (linha.startsWith("#") || linha.trim().isEmpty()) {
+                    continue;
+                }
+
+                processarLinhaArquivo(linha, aeroporto);
+            }
+
+            arquivoScanner.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("Arquivo 'aviao.txt' não encontrado.");
+        }
+    }
+
+    private static void processarLinhaArquivo(String linha, Aeroporto aeroporto) {
+        String[] partes = linha.split(",");
+        
+        if (partes.length >= 5) {
+            String id = partes[0].trim();
+            int combustivel = Integer.parseInt(partes[1].trim());
+            String companhia = partes[2].trim();
+            int passageiro = Integer.parseInt(partes[3].trim());
+            boolean preferencia = Boolean.parseBoolean(partes[4].trim());
+
+            Aviao av = new Aviao(id, passageiro, combustivel, companhia, preferencia);
+
+            if (preferencia) {
+                aeroporto.adicionarAterrisagem(aviao);
+            } else {
+                aeroporto.adicionarDecolagem(aviao);
+            }
+        }
+    }
+
 }
