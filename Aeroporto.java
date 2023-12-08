@@ -50,8 +50,103 @@ public class Aeroporto{
             }
         }
     }
+    public double calcularTempoMedioEsperaDecolagem(){
+        int totalAviaoDecolagem = pista_1.getDecolagem_1().size() + pista_1.getDecolagem_2().size() + pista_2.getDecolagem_1().size() + pista_2.getDecolagem_2().size();
+        int totalTempoEspera = 0;
 
+        for(Aviao av : pista_1.getDecolagem_1()){
+            totalTempoEspera += aviao.getReservas_minutos();
+    }
+        for (Aviao av : pista_1.getDecolagem_2()) {
+            totalTempoEspera += aviao.getReservas_minutos();
+        }
 
+        for (Aviao av : pista_2.getDecolagem_1()) {
+            totalTempoEspera += aviao.getReservas_minutos();
+        }
 
+        for (Aviao avi : pista_2.getDecolagem_2()) {
+            totalTempoEspera += aviao.getReservas_minutos();
+        }
 
+        return totalTempoEspera / (double) totalAvioesDecolagem;
 }
+    public double calcularTempoMedioEsperaAterrissagem(){
+        int totalAvioesAterrissagem = pista_1.totalAterrisagem() + pista_2.totalAterrisagem();
+
+        int totalTempoEspera = 0;
+
+        for (Aviao av : pista_1.getAterrisagem_1()) {
+            totalTempoEspera += aviao.getReservas_minutos();
+        }
+
+        for (Aviao av : pista_1.getAterrisagem_2()) {
+            totalTempoEspera += aviao.getReservas_minutos();
+        }
+
+        for (Aviao av : pista_2.getAterrisagem_1()) {
+            totalTempoEspera += aviao.getReservas_minutos();
+        }
+
+        for (Aviao av : pista_2.getAterrisagem_2()) {
+            totalTempoEspera += aviao.getReservas_minutos();
+        }
+
+        return totalTempoEspera / (double) totalAvioesAterrissagem;
+}
+    public double calcularTempoMedioGlobal(){
+        int totalAvioes = pista_1.totalDecolagem() + pista_2.totalDecolagem() + pista_1.totalAterrisagem() + pista_2.totalAterrisagem();
+
+    int totalTempoEspera = 0;
+
+    for (Aviao av : pista_1.getDecolagem_1()) {
+        totalTempoEspera += aviao.getReservas_minutos();
+    }
+
+    for (Aviao av : pista_1.getDecolagem_2()) {
+        totalTempoEspera += aviao.getReservas_minutos();
+    }
+
+    for (Aviao av : pista_2.getDecolagem_1()) {
+        totalTempoEspera += aviao.getReservas_minutos();
+    }
+
+    for (Aviao av : pista_2.getDecolagem_2()) {
+        totalTempoEspera += aviao.getReservas_minutos();
+    }
+
+    for (Aviao av : pista_1.getAterrisagem_1()) {
+        totalTempoEspera += aviao.getReservas_minutos();
+    }
+
+    for (Aviao av : pista_1.getAterrisagem_2()) {
+        totalTempoEspera += aviao.getReservas_minutos();
+    }
+
+    for (Aviao av : pista_2.getAterrisagem_1()) {
+        totalTempoEspera += aviao.getReservas_minutos();
+    }
+
+    for (Aviao av : pista_2.getAterrisagem_2()) {
+        totalTempoEspera += aviao.getReservas_minutos();
+    }
+
+    return totalTempoEspera / (double) totalAvioes;
+        }
+    
+    public void imprimirAvioesNasFilas() {
+        System.out.println("Aviões na Fila de Decolagem da Pista 1:");
+        imprimirAvioes(pista_1.getDecolagem_1());
+        
+        System.out.println("Aviões na Fila de Decolagem da Pista 2:");
+        imprimirAvioes(pista_1.getDecolagem_2());
+
+        System.out.println("Aviões na Fila de Aterrissagem da Pista 1:");
+        imprimirAvioes(pista_1.getAterrisagem_1());
+
+        System.out.println("Aviões na Fila de Aterrissagem da Pista 2:");
+        imprimirAvioes(pista_1.getAterrisagem_2());
+
+    }
+
+    
