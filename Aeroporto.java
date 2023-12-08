@@ -11,6 +11,8 @@ public class Aeroporto{
 
     private List<Aviao> prioritario;
 
+    private int aterrissagemEmergenciais;
+
     public int controlador_decolagem;
     
     public Aeroporto(){
@@ -22,6 +24,8 @@ public class Aeroporto{
         aterrisagem =  new ArrayList<Aviao>();
 
         prioritario =  new ArrayList<Aviao>();
+
+        this.aterrissagensEmergenciais = 0;
 
         controlador_decolagem = 0;
     }
@@ -55,18 +59,18 @@ public class Aeroporto{
         int totalTempoEspera = 0;
 
         for(Aviao av : pista_1.getDecolagem_1()){
-            totalTempoEspera += aviao.getReservas_minutos();
+            totalTempoEspera += av.getReservas_minutos();
     }
         for (Aviao av : pista_1.getDecolagem_2()) {
-            totalTempoEspera += aviao.getReservas_minutos();
+            totalTempoEspera += av.getReservas_minutos();
         }
 
         for (Aviao av : pista_2.getDecolagem_1()) {
-            totalTempoEspera += aviao.getReservas_minutos();
+            totalTempoEspera += av.getReservas_minutos();
         }
 
         for (Aviao avi : pista_2.getDecolagem_2()) {
-            totalTempoEspera += aviao.getReservas_minutos();
+            totalTempoEspera += av.getReservas_minutos();
         }
 
         return totalTempoEspera / (double) totalAvioesDecolagem;
@@ -77,19 +81,24 @@ public class Aeroporto{
         int totalTempoEspera = 0;
 
         for (Aviao av : pista_1.getAterrisagem_1()) {
-            totalTempoEspera += aviao.getReservas_minutos();
+            if (av.getReservas_minutos() <= 0) {
+            aeroporto.incrementarAterrissagensEmergenciais();
+        }
+
+        totalTempoEspera += av.getReservas_minutos();
+        totalAterrissagens++;
         }
 
         for (Aviao av : pista_1.getAterrisagem_2()) {
-            totalTempoEspera += aviao.getReservas_minutos();
+            totalTempoEspera += av.getReservas_minutos();
         }
 
         for (Aviao av : pista_2.getAterrisagem_1()) {
-            totalTempoEspera += aviao.getReservas_minutos();
+            totalTempoEspera += av.getReservas_minutos();
         }
 
         for (Aviao av : pista_2.getAterrisagem_2()) {
-            totalTempoEspera += aviao.getReservas_minutos();
+            totalTempoEspera += av.getReservas_minutos();
         }
 
         return totalTempoEspera / (double) totalAvioesAterrissagem;
@@ -100,36 +109,38 @@ public class Aeroporto{
     int totalTempoEspera = 0;
 
     for (Aviao av : pista_1.getDecolagem_1()) {
-        totalTempoEspera += aviao.getReservas_minutos();
+        totalTempoEspera += av.getReservas_minutos();
     }
 
     for (Aviao av : pista_1.getDecolagem_2()) {
-        totalTempoEspera += aviao.getReservas_minutos();
+        totalTempoEspera += av.getReservas_minutos();
     }
 
     for (Aviao av : pista_2.getDecolagem_1()) {
-        totalTempoEspera += aviao.getReservas_minutos();
+        totalTempoEspera += av.getReservas_minutos();
     }
 
     for (Aviao av : pista_2.getDecolagem_2()) {
-        totalTempoEspera += aviao.getReservas_minutos();
+        totalTempoEspera += av.getReservas_minutos();
     }
 
     for (Aviao av : pista_1.getAterrisagem_1()) {
-        totalTempoEspera += aviao.getReservas_minutos();
+        totalTempoEspera += av.getReservas_minutos();
     }
 
     for (Aviao av : pista_1.getAterrisagem_2()) {
-        totalTempoEspera += aviao.getReservas_minutos();
+        totalTempoEspera += av.getReservas_minutos();
     }
 
     for (Aviao av : pista_2.getAterrisagem_1()) {
-        totalTempoEspera += aviao.getReservas_minutos();
+        totalTempoEspera += av.getReservas_minutos();
     }
 
     for (Aviao av : pista_2.getAterrisagem_2()) {
-        totalTempoEspera += aviao.getReservas_minutos();
+        totalTempoEspera += av.getReservas_minutos();
     }
+
+    System.out.println("Número de Aterrissagens de Emergência: " + aeroporto.getAterrissagensEmergenciais());
 
     return totalTempoEspera / (double) totalAvioes;
         }
@@ -147,6 +158,14 @@ public class Aeroporto{
         System.out.println("Aviões na Fila de Aterrissagem da Pista 2:");
         imprimirAvioes(pista_1.getAterrisagem_2());
 
+    }
+    
+    public void incrementarAterrissagensEmergenciais() {
+        this.aterrissagensEmergenciais++;
+    }
+
+    public int getAterrissagensEmergenciais() {
+        return this.aterrissagensEmergenciais;
     }
 
     
