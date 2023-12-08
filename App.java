@@ -6,6 +6,7 @@ public class App {
         Scanner entrada = new Scanner(System.in);
         Aeroporto Aeroporto = new Aeroporto();
 
+        int intervaloAutomaticoSegundos = 60;
         String conteudoDoArquivo = lerArquivo(caminhoDoArquivo);
 
         do{
@@ -31,7 +32,19 @@ public class App {
                 default:
                     System.out.println("OPCAO INVALIDA...");
                     break;
-            } while(opc!=4);
+            }
+            
+            if (opc != 4) {    //a cada min, programa indica o que aconteceu.
+                try {
+                    Thread.sleep(intervaloAutomaticoSegundos * 1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            System.out.println("Ocorreu um minuto.");
+
+        } while (opc != 4);
             entrada.close();
         }
     }
