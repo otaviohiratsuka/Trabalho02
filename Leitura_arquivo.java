@@ -11,12 +11,12 @@ public class Leitura_arquivo{
             String linha;
             while ((linha = br.readLine()) != null) {
                 conteudo.append(linha).append("\n");
-                if(linha != "##"){
-                    if(linha != "#"){
+                if("##".equals(linha)){
+                 break;
+                }
+                    if("#".equalsIgnoreCase(linha)){
                         
                     }
-
-                }
                 else{
                     break;
                 }
