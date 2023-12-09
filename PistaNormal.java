@@ -11,9 +11,19 @@ public class PistaNormal{
 
     private List<Aviao> suporte_decolagem;
     private List<Aviao> suporte_aterrisagem;
-
+    
     private List<Aviao> prioritario; // percorrer 1 e 2, procurar risco(abaixo de 3min)
     
+    private int tempo_total_aterrisage1;
+    private int tempo_total_aterrisage2;
+
+    private int tempo_total_decolagem1;
+    private int tempo_total_decolagem2;
+
+    //private int tempo_total_prioridade;
+
+
+
     public PistaNormal(){
         this.aterrisagem_1 = new ArrayList<Aviao>();
         this.aterrisagem_2 = new ArrayList<Aviao>();
@@ -22,6 +32,11 @@ public class PistaNormal{
         this.prioritario = new ArrayList<Aviao>();
         this.suporte_aterrisagem = new ArrayList<Aviao>();
         this.suporte_decolagem = new ArrayList<Aviao>();
+        this.tempo_total_aterrisage1 = 0;
+        this.tempo_total_aterrisage2 = 0;
+        this.tempo_total_decolagem1 = 0;
+        this.tempo_total_decolagem2 = 0;    
+        //this.tempo_total_prioridade = 0;
 
     }
 
@@ -102,12 +117,14 @@ public class PistaNormal{
             if (!aterrisagem_1.isEmpty()) {
                 suporte_aterrisagem.add(aterrisagem_1.get(0));
                 aterrisagem_1.remove(0);
+                tempo_total_aterrisage1++;
             }
         }
         else{
             if (!aterrisagem_2.isEmpty()) {
                 suporte_aterrisagem.add(aterrisagem_2.get(0));
                 aterrisagem_2.remove(0);
+                tempo_total_aterrisage2++;
             } 
         }
 
@@ -127,12 +144,14 @@ public class PistaNormal{
             if (!decolagem_1.isEmpty()) {
                 suporte_decolagem.add(decolagem_1.get(0));
                 decolagem_1.remove(0);
+                tempo_total_decolagem1++;
             }
         }
         else{
             if (!decolagem_2.isEmpty()) {
                 suporte_decolagem.add(decolagem_2.get(0));
                 decolagem_2.remove(0);
+                tempo_total_decolagem2++;
             } 
         }
     }
@@ -161,5 +180,20 @@ public class PistaNormal{
     public List<Aviao> getAterrisagem_2() {
         return aterrisagem_2;
     }
+    
+
+    public int getTempoTotalAterrisage1(){
+        return this.tempo_total_aterrisage1;
+    }
+    public int getTempoTotalAterrisage2(){
+        return this.tempo_total_aterrisage2;
+    }
+    public int getTempoTotalDecolagem1(){
+        return this.tempo_total_decolagem1;
+    }
+    public int getTempoTotalDecolagem2(){
+        return this.tempo_total_decolagem2;
+    }
+
 
 }

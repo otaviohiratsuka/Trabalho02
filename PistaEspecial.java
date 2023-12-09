@@ -5,9 +5,15 @@ public class PistaEspecial {
     private List<Aviao> decolagem;
     private List<Aviao> aterrisagem;
 
+    private int tempo_total_decolagem;
+    private int tempo_total_aterrisagem;
+
     public PistaEspecial(){
         decolagem = new ArrayList<Aviao>();
+
         aterrisagem = new ArrayList<Aviao>();
+        tempo_total_decolagem = 0;
+        tempo_total_aterrisagem = 0;
     }
 
     public List<Aviao> getDecolagem() {
@@ -25,6 +31,15 @@ public class PistaEspecial {
     public void setAterrisagem(Aviao aterrisagem) {
         this.aterrisagem.add(aterrisagem);
     }
+
+    public double getTempoTotalDecolagem(){
+        return tempo_total_decolagem;
+    }
+
+    public double getTempoTotalAterrissagem(){
+        return tempo_total_aterrisagem;
+    }
 }
+
 
     

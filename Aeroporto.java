@@ -12,8 +12,12 @@ public class Aeroporto{
     private List<Aviao> prioritario;
 
     private int aterrissagemEmergenciais;
+    private int tempo_total;
+    private int quantidade_prioritario;
+
 
     public int controlador_decolagem;
+    
     
     public Aeroporto(){
         pista_1 = new PistaNormal();
@@ -22,12 +26,12 @@ public class Aeroporto{
 
         decolagem = new ArrayList<Aviao>();
         aterrisagem =  new ArrayList<Aviao>();
-
         prioritario =  new ArrayList<Aviao>();
 
-        this.aterrissagensEmergenciais = 0;
-
+        aterrissagemEmergenciais = 0;
         controlador_decolagem = 0;
+        tempo_total = 0;
+        quantidade_prioritario = 0;
     }
 
     public void adicionarAterrisagem(Aviao av){
@@ -35,13 +39,13 @@ public class Aeroporto{
             pista_1.addAviaoAterrisagem(av);
         }
         else{
-            pista_2.addAviaoAterrisagem(av)
+            pista_2.addAviaoAterrisagem(av);
         }
     }
 
     public void adicionarDecolagem(Aviao av){
         if(controlador_decolagem != 3){
-            pista_3.getDecolagem(av);
+            pista_3.setDecolagem(av);
             controlador_decolagem ++;
         }
         else{
@@ -54,119 +58,68 @@ public class Aeroporto{
             }
         }
     }
-    public double calcularTempoMedioEsperaDecolagem(){
-        int totalAviaoDecolagem = pista_1.getDecolagem_1().size() + pista_1.getDecolagem_2().size() + pista_2.getDecolagem_1().size() + pista_2.getDecolagem_2().size();
-        int totalTempoEspera = 0;
-
-        for(Aviao av : pista_1.getDecolagem_1()){
-            totalTempoEspera += av.getReservas_minutos();
-    }
-        for (Aviao av : pista_1.getDecolagem_2()) {
-            totalTempoEspera += av.getReservas_minutos();
-        }
-
-        for (Aviao av : pista_2.getDecolagem_1()) {
-            totalTempoEspera += av.getReservas_minutos();
-        }
-
-        for (Aviao avi : pista_2.getDecolagem_2()) {
-            totalTempoEspera += av.getReservas_minutos();
-        }
-
-        return totalTempoEspera / (double) totalAvioesDecolagem;
-}
-    public double calcularTempoMedioEsperaAterrissagem(){
-        int totalAvioesAterrissagem = pista_1.totalAterrisagem() + pista_2.totalAterrisagem();
-
-        int totalTempoEspera = 0;
-
-        for (Aviao av : pista_1.getAterrisagem_1()) {
-            if (av.getReservas_minutos() <= 0) {
-            aeroporto.incrementarAterrissagensEmergenciais();
-        }
-
-        totalTempoEspera += av.getReservas_minutos();
-        totalAterrissagens++;
-        }
-
-        for (Aviao av : pista_1.getAterrisagem_2()) {
-            totalTempoEspera += av.getReservas_minutos();
-        }
-
-        for (Aviao av : pista_2.getAterrisagem_1()) {
-            totalTempoEspera += av.getReservas_minutos();
-        }
-
-        for (Aviao av : pista_2.getAterrisagem_2()) {
-            totalTempoEspera += av.getReservas_minutos();
-        }
-
-        return totalTempoEspera / (double) totalAvioesAterrissagem;
-    }
-    public double calcularTempoMedioGlobal(){
-        int totalAvioes = pista_1.totalDecolagem() + pista_2.totalDecolagem() + pista_1.totalAterrisagem() + pista_2.totalAterrisagem();
-
-    int totalTempoEspera = 0;
-
-    for (Aviao av : pista_1.getDecolagem_1()) {
-        totalTempoEspera += av.getReservas_minutos();
+ 
+    //o tempo médio de espera para decolagem em cada fila
+    public void rodarTempoTotal(){
+        this.tempo_total++;
     }
 
-    for (Aviao av : pista_1.getDecolagem_2()) {
-        totalTempoEspera += av.getReservas_minutos();
+    public double tempoMedioPista_1_Aterrissagem_1(){
+        return (double)tempo_total/pista_1.getTempoTotalAterrisage1();
     }
 
-    for (Aviao av : pista_2.getDecolagem_1()) {
-        totalTempoEspera += av.getReservas_minutos();
+    public double tempoMedioPista_1_Aterrissagem_2(){
+        return (double)tempo_total/pista_1.getTempoTotalAterrisage2();
     }
 
-    for (Aviao av : pista_2.getDecolagem_2()) {
-        totalTempoEspera += av.getReservas_minutos();
+
+    public double tempoMedioPista_2_Aterrissagem_1(){
+        return (double)tempo_total/pista_2.getTempoTotalAterrisage1();
     }
 
-    for (Aviao av : pista_1.getAterrisagem_1()) {
-        totalTempoEspera += av.getReservas_minutos();
+
+    public double tempoMedioPista_2_Aterrissagem_2(){
+        return (double)tempo_total/pista_2.getTempoTotalAterrisage2();
     }
 
-    for (Aviao av : pista_1.getAterrisagem_2()) {
-        totalTempoEspera += av.getReservas_minutos();
+
+    public double tempoMedioPista_1_Decolagem_1(){
+        return (double)tempo_total/pista_1.getTempoTotalDecolagem1();
     }
 
-    for (Aviao av : pista_2.getAterrisagem_1()) {
-        totalTempoEspera += av.getReservas_minutos();
+
+    public double tempoMedioPista_1_Decolagem_2(){
+        return (double)tempo_total/pista_1.getTempoTotalDecolagem2();
     }
 
-    for (Aviao av : pista_2.getAterrisagem_2()) {
-        totalTempoEspera += av.getReservas_minutos();
+
+    public double tempoMedioPista_2_Decolagem_1(){
+        return (double)tempo_total/pista_2.getTempoTotalDecolagem1();
     }
 
-    System.out.println("Número de Aterrissagens de Emergência: " + aeroporto.getAterrissagensEmergenciais());
 
-    return totalTempoEspera / (double) totalAvioes;
-        }
-    
-    public void imprimirAvioesNasFilas() {
-        System.out.println("Aviões na Fila de Decolagem da Pista 1:");
-        imprimirAvioes(pista_1.getDecolagem_1());
-        
-        System.out.println("Aviões na Fila de Decolagem da Pista 2:");
-        imprimirAvioes(pista_1.getDecolagem_2());
-
-        System.out.println("Aviões na Fila de Aterrissagem da Pista 1:");
-        imprimirAvioes(pista_1.getAterrisagem_1());
-
-        System.out.println("Aviões na Fila de Aterrissagem da Pista 2:");
-        imprimirAvioes(pista_1.getAterrisagem_2());
-
-    }
-    
-    public void incrementarAterrissagensEmergenciais() {
-        this.aterrissagensEmergenciais++;
+    public double tempoMedioPista_2_Decolagem_2(){
+        return (double)tempo_total/pista_2.getTempoTotalDecolagem2();
     }
 
-    public int getAterrissagensEmergenciais() {
-        return this.aterrissagensEmergenciais;
+
+    public double tempoMedioPista_3_Decolagem(){
+        return (double)tempo_total/pista_3.getTempoTotalDecolagem();
     }
 
-    
+
+    public double tempoMedioPista_3_Aterrissagem(){
+        return (double)tempo_total/pista_3.getTempoTotalAterrissagem();
+    }
+
+
+    public double tempoMedioGlobalAterrisagem(){
+        return (double)(pista_1.getTempoTotalAterrisage1()+pista_1.getTempoTotalAterrisage2()+pista_2.getTempoTotalAterrisage1()+pista_2.getTempoTotalAterrisage2()+pista_3.getTempoTotalAterrissagem())/tempo_total;
+    }
+
+    public double tempoMedioGlobalDecolagem(){
+        return (double)(pista_1.getTempoTotalDecolagem1()+pista_1.getTempoTotalDecolagem2()+pista_2.getTempoTotalDecolagem1()+pista_2.getTempoTotalDecolagem2()+pista_3.getTempoTotalDecolagem())/tempo_total;
+    }
+
+
 }
