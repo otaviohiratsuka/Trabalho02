@@ -23,6 +23,9 @@ public class PistaEspecial {
     public void setDecolagem(Aviao decolagem) {
         this.decolagem.add(decolagem);
     }
+    public void setDecolagem(List<Aviao> decolagem) {
+        this.decolagem = decolagem;
+    }
 
     public List<Aviao> getAterrisagem() {
         return aterrisagem;
@@ -31,6 +34,10 @@ public class PistaEspecial {
     public void setAterrisagem(Aviao aterrisagem) {
         this.aterrisagem.add(aterrisagem);
     }
+    public void setAterrisagem(List<Aviao> aterrisagem) {
+        this.aterrisagem = aterrisagem;
+    }
+
 
     public double getTempoTotalDecolagem(){
         return tempo_total_decolagem;

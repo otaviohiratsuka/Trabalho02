@@ -58,6 +58,68 @@ public class Aeroporto{
             }
         }
     }
+
+    public void atualizarAeroportoNormal(){
+        tempo_total ++;
+        Aviao aviao_pista3;
+        Aviao aviao_pista2;
+        Aviao aviao_pista1;
+
+
+        if(pista_3.getAterrisagem().size()!=0 && pista_3.getAterrisagem().size()<3){
+            aviao_pista3 = pista_3.getAterrisagem().get(0);
+            pista_3.setAterrisagem(pista_3.getAterrisagem().remove(0));
+        }
+        else if(pista_3.getAterrisagem().size()>=3){
+            atualizarAeroportoNormal_2();
+            return;
+        }
+        else{
+            aviao_pista3 = pista_3.getDecolagem().get(0);
+            pista_3.setDecolagem(pista_3.getDecolagem().remove(0));
+        }
+
+
+
+        if (pista_1.getDecolagem_1().size() + pista_1.getDecolagem_2().size() < pista_1.getAterrisagem_1().size() + pista_1.getAterrisagem_2().size()) {
+            aviao_pista1 = pista_1.getSuporteAterrisagem().get(0);
+            List<Aviao> novaLista = new ArrayList<>(pista_1.getSuporteAterrisagem());
+            novaLista.remove(0);
+            pista_1.setSuporteAterrisagem(novaLista);
+        }
+        else{
+            aviao_pista1 = pista_1.getSuporteDecolagem().get(0);
+            List<Aviao> novaLista = new ArrayList<>(pista_1.getSuporteDecolagem());
+            novaLista.remove(0);
+            pista_1.setSuporteDecolagem(novaLista);
+        }
+
+
+
+        if (pista_2.getDecolagem_1().size() + pista_2.getDecolagem_2().size() < pista_2.getAterrisagem_1().size() + pista_2.getAterrisagem_2().size()) {
+            aviao_pista1 = pista_2.getSuporteAterrisagem().get(0);
+            List<Aviao> novaLista = new ArrayList<>(pista_2.getSuporteAterrisagem());
+            novaLista.remove(0);
+            pista_2.setSuporteAterrisagem(novaLista);
+        }
+        else{
+            aviao_pista2 = pista_2.getSuporteDecolagem().get(0);
+            List<Aviao> novaLista = new ArrayList<>(pista_2.getSuporteDecolagem());
+            novaLista.remove(0);
+            pista_2.setSuporteDecolagem(novaLista);
+        }
+
+
+
+
+
+    }
+
+     public void atualizarAeroportoNormal_2(){
+
+     }
+
+
  
     //o tempo médio de espera para decolagem em cada fila
     public void rodarTempoTotal(){

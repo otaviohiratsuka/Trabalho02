@@ -112,6 +112,12 @@ public class PistaNormal{
         }
     }
 
+
+    public void setSuporteAterrisagem(List<Aviao> av){
+        suporte_aterrisagem = av;
+    }
+
+
     public void suporteAterrisagem() {
         if (aterrisagem_1.size() > aterrisagem_2.size()){
             if (!aterrisagem_1.isEmpty()) {
@@ -137,6 +143,10 @@ public class PistaNormal{
     }
     public List<Aviao> getSuporteAterrisagem(){
         return suporte_aterrisagem;
+    }
+
+    public void setSuporteDecolagem(List<Aviao> av){
+        this.suporte_decolagem = av;
     }
 
     public void suporteDecolagem() {
