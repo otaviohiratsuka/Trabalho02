@@ -54,6 +54,14 @@ public class Aviao {
 
     public void setReservas_minutos(int reservas_minutos) {
         this.reservas_minutos = reservas_minutos;
+    }
+
+    public boolean isPassageiro_prioridade() {
+        return passageiro_prioridade;
+    }
+
+    public void setPassageiro_prioridade(boolean passageiro_prioridade) {
+        this.passageiro_prioridade = passageiro_prioridade;
     }   
     
 

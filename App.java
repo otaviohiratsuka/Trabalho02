@@ -1,94 +1,204 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class App {
-    public static void main(String[] args){
-        int opc = 0;
-        Scanner entrada = new Scanner(System.in);
-        Aeroporto Aeroporto = new Aeroporto();
+public static boolean interacao = false;
 
-        int intervaloAutomaticoSegundos = 60;
-        String conteudoDoArquivo = "Aviao.txt";
+    public static void processarLinhaArquivo(String id, String companhia, String numero_passageiro, String prioridade, String combustivel, Aeroporto aeroporto) {
+        int numero_pass, combusti;
+        boolean prio;
 
-        do{
-            System.out.println("Menu");
-            System.out.println("Escolha uma opção: ");
-            System.out.println("1- Atualize o sistema");
-            System.out.println("2- Informe um desastre");
-            System.out.println("3- sair");
-
-            opc = entrada.nextInt();
-            entrada.nextLine();
-
-            switch(opc){
-                case 1:
-
-                    break;
-                case 2:
-
-                    break;
-                case 3:
-                    System.out.println("saindo...");
-                    break;
-                default:
-                    System.out.println("OPCAO INVALIDA...");
-                    break;
-            }
-            
-            if (opc != 4) {  //a cada min, programa indica o que aconteceu.
-                aeroporto.calcularTempoMedioEsperaAterrissagem();
-                System.out.println("Número de Aterrissagens de Emergência: " + aeroporto.getAterrissagensEmergenciais());
-                try {
-                    Thread.sleep(intervaloAutomaticoSegundos * 1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            System.out.println("Ocorreu um minuto.");
-
-        } while (opc != 4);
-            entrada.close();
+        try {
+            numero_pass = Integer.parseInt(numero_passageiro);
+        } catch (NumberFormatException ex) {
+            System.out.println("O passageiro foi informado incorretamento do ID: "+id);
+            System.out.println("Aviao não salvo.");
+            return;
         }
+
+        try {
+            combusti = Integer.parseInt(combustivel);
+        } catch (NumberFormatException ex) {
+            System.out.println("O combustivel foi informado incorretamento do ID: "+id);
+            System.out.println("Aviao não salvo.");
+            return;
+        }
+
+        if(prioridade.toLowerCase().equals("sim")){
+            prio = true;
+        }
+        else if(prioridade.toLowerCase().equals("nao")){
+            prio = false;
+        }
+        else{
+            System.out.println("A prioridade foi informado incorretamento do ID: "+id);
+            System.out.println("Aviao não salvo.");
+            return;
+        }
+         Aviao aviao =new Aviao(id+"-"+combustivel,numero_pass,combusti,companhia,prio);
+
+        if( (Integer.parseInt(id)) %2 == 0){
+           aeroporto.adicionarDecolagem(aviao);
+        }
+        else{
+            aeroporto.adicionarAterrisagem(aviao);
+        }
+
+
     }
 
     public static void entradaArquivo(Aeroporto aeroporto) {
-        try {
-            Scanner arquivoScanner = new Scanner(new File("Aviao.txt"));
-
+        try (Scanner arquivoScanner = new Scanner(new File("Aviao.txt"))) {
+            int controlador = 0;
+            String id = "", companhia = "", numero_passageiro = "", prioridade = "", combustivel = "";
+    
             while (arquivoScanner.hasNextLine()) {
                 String linha = arquivoScanner.nextLine();
+    
+                if (linha.startsWith("##") || linha.trim().isEmpty()) {
+                    processarLinhaArquivo(id, companhia, numero_passageiro, prioridade, combustivel, aeroporto);
+                    break;
+                
+                } else if (linha.startsWith("#")) {
+                    processarLinhaArquivo(id, companhia, numero_passageiro, prioridade, combustivel, aeroporto);
 
-                if (linha.startsWith("#") || linha.trim().isEmpty()) {
-                    continue;
+                    controlador = 0;
+                } else {
+                    switch (controlador) {
+                        case 0:
+                            id = linha;
+                            break;
+                        case 1:
+                            companhia = linha;
+                            break;
+                        case 2:
+                            numero_passageiro = linha;
+                            break;
+                        case 3:
+                            prioridade = linha;
+                            break;
+                        case 4:
+                            combustivel = linha;
+                            break;
+                        default:
+                            break;
+                    }
+    
+                    controlador++;
                 }
-
-                processarLinhaArquivo(linha, aeroporto);
             }
-
-            arquivoScanner.close();
+    
         } catch (FileNotFoundException e) {
             System.out.println("Arquivo 'aviao.txt' não encontrado.");
         }
     }
+    
+    public static void menu_sem_desastre(Aeroporto aeroporto){
+        Scanner entrada = new Scanner(System.in);
+        int opcao = 0;
+        System.out.println("+======Menu=====+");
+        System.out.println("1- Atualizar o Sistema");
+        System.out.println("2- Ocorrencia de Desastre");
+        System.out.println("3- Sair");
+        System.out.println("-------------");
 
-    private static void processarLinhaArquivo(String linha, Aeroporto aeroporto) {
-        String[] partes = linha.split(",");
-        
-        if (partes.length >= 5) {
-            String id = partes[0].trim();
-            int combustivel = Integer.parseInt(partes[1].trim());
-            String companhia = partes[2].trim();
-            int passageiro = Integer.parseInt(partes[3].trim());
-            boolean preferencia = Boolean.parseBoolean(partes[4].trim());
-
-            Aviao av = new Aviao(id, passageiro, combustivel, companhia, preferencia);
-
-            if (preferencia) {
-                aeroporto.adicionarAterrisagem(aviao);
-            } else {
-                aeroporto.adicionarDecolagem(aviao);
+        while(true){
+            try{
+                System.out.println("Escolha uma opção: ");
+                opcao = entrada.nextInt();
+                break;
+            }catch(InputMismatchException ex){
+                entrada.nextLine();
             }
         }
-    }
 
+        System.out.println("-------------");
+        switch (opcao) {
+            case 1:
+            {
+                break;
+            }
+            case 2:
+            {
+                interacao = true;
+                break;
+            }
+            case 3:
+            {
+                System.exit(0);
+                break;
+            }
+            default:
+                System.out.println("OPCAO INVALIDA...");
+                break;
+
+        }
+        entrada.close();
 }
+
+    public static void menu_com_desastre(Aeroporto aeroporto){
+        Scanner entrada = new Scanner(System.in);
+        int opcao = 0;
+        System.out.println("+======Menu=====+");
+        System.out.println("1- Atualizar o Sistema");
+        System.out.println("2- Sair do Desastre");
+        System.out.println("3- Sair");
+        System.out.println("-------------");
+
+        while(true){
+            try{
+                System.out.println("Escolha uma opção: ");
+                opcao = entrada.nextInt();
+                break;
+            }catch(InputMismatchException ex){
+                entrada.nextLine();
+            }
+        }
+
+        System.out.println("-------------");
+        switch (opcao) {
+            case 1:
+            {
+                break;
+            }
+            case 2:
+            {
+                interacao = false;
+                break;
+            }
+            case 3:
+            {
+                System.exit(0);
+                break;
+            }
+            default:
+                System.out.println("OPCAO INVALIDA...");
+                break;
+        }
+
+        entrada.close();
+}
+
+
+    public static void main(String[] args){
+        Aeroporto aeroporto = new Aeroporto();
+
+        entradaArquivo(aeroporto);
+        
+        while(true){
+            if(interacao == true){
+                menu_com_desastre(aeroporto);
+            }
+            else{
+                menu_sem_desastre(aeroporto);
+            }
+        }
+
+    }
+}
+
+
+
+

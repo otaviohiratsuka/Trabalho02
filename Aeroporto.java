@@ -102,7 +102,7 @@ public class Aeroporto{
         }
 
         return totalTempoEspera / (double) totalAvioesAterrissagem;
-}
+    }
     public double calcularTempoMedioGlobal(){
         int totalAvioes = pista_1.totalDecolagem() + pista_2.totalDecolagem() + pista_1.totalAterrisagem() + pista_2.totalAterrisagem();
 
@@ -169,3 +169,4 @@ public class Aeroporto{
     }
 
     
+}

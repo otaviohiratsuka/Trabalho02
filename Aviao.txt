@@ -1,5 +1,20 @@
-#!/usr/bin/env bash
-EKFOSG
-#!/usr/bin/env bash
-EFF
+7
+gol
+45
+sim
+15
+#
+8
+azul
+45
+sim
+15
 ##
+
+
+##
+Primeira linha = id;
+Segunda linha = companhia aerea
+Terceira linha = numero de passageiro
+Quarta linha = Ver se tem prioridade(sim/nao)
+Quinta linha = combustivel
