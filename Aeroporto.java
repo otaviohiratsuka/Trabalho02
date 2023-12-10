@@ -87,10 +87,11 @@ public class Aeroporto{
             pista_3.setAterrisagem(novaLista);
             
 
-            System.out.println("Pista 3 - Decolagem");
+            System.out.println("\nPista 3 - Decolagem\n");
             System.out.println("N° PASSAGEIROS: " + aviao_pista3.getNumero_passageiro());
             System.out.println("COMPANHIA AÉREA: " + aviao_pista3.getCompanhia_aerea());
             System.out.println("RESERVAS MINUTOS: " + aviao_pista3.getReservas_minutos());
+            System.out.println("===========================");
         }
         else if (!pista_3.getDecolagem().isEmpty()) {
             aviao_pista3 = pista_3.getDecolagem().get(0);
@@ -100,10 +101,11 @@ public class Aeroporto{
             pista_3.setDecolagem(novaLista);
             
 
-            System.out.println("Pista 3 - Decolagem");
+            System.out.println("\nPista 3 - Decolagem\n");
             System.out.println("N° PASSAGEIROS: " + aviao_pista3.getNumero_passageiro());
             System.out.println("COMPANHIA AÉREA: " + aviao_pista3.getCompanhia_aerea());
             System.out.println("RESERVAS MINUTOS: " + aviao_pista3.getReservas_minutos());
+            System.out.println("===========================");
         } 
 
          //========Pista 1========================================
@@ -116,10 +118,11 @@ public class Aeroporto{
                 novaLista.remove(0);
                 pista_1.setSuporteAterrisagem(novaLista);
         
-                System.out.println("Pista 1 - Aterrisagem");
+                System.out.println("\nPista 1 - Aterrisagem\n");
                 System.out.println("N° PASSAGEIROS: " + aviao_pista1.getNumero_passageiro());
                 System.out.println("COMPANHIA AÉREA: " + aviao_pista1.getCompanhia_aerea());
                 System.out.println("RESERVAS MINUTOS: " + aviao_pista1.getReservas_minutos());
+                 System.out.println("===========================");
             } 
         } else {            
             if (pista_1.getSuporteDecolagem().size()!=0) {
@@ -129,10 +132,11 @@ public class Aeroporto{
                 novaLista.remove(0);
                 pista_1.setSuporteDecolagem(novaLista);
         
-                System.out.println("Pista 1 - Decolagem");
+                System.out.println("\nPista 1 - Decolagem\n");
                 System.out.println("N° PASSAGEIROS: " + aviao_pista1.getNumero_passageiro());
                 System.out.println("COMPANHIA AÉREA: " + aviao_pista1.getCompanhia_aerea());
                 System.out.println("RESERVAS MINUTOS: " + aviao_pista1.getReservas_minutos());
+                System.out.println("===========================");
             } 
         }
         
@@ -146,10 +150,11 @@ public class Aeroporto{
                 novaLista.remove(0);
                 pista_2.setSuporteAterrisagem(novaLista);
         
-                System.out.println("Pista 2 - Aterrisagem");
+                System.out.println("\nPista 2 - Aterrisagem\n");
                 System.out.println("N° PASSAGEIROS: " + aviao_pista2.getNumero_passageiro());
                 System.out.println("COMPANHIA AÉREA: " + aviao_pista2.getCompanhia_aerea());
                 System.out.println("RESERVAS MINUTOS: " + aviao_pista2.getReservas_minutos());
+                System.out.println("===========================");
             } 
         } else {
             List<Aviao> suporteDecolagemPista2 = pista_2.getSuporteDecolagem();
@@ -160,10 +165,11 @@ public class Aeroporto{
                 novaLista.remove(0);
                 pista_2.setSuporteDecolagem(novaLista);
         
-                System.out.println("Pista 2 - Decolagem");
+                System.out.println("\nPista 2 - Decolagem\n");
                 System.out.println("N° PASSAGEIROS: " + aviao_pista2.getNumero_passageiro());
                 System.out.println("COMPANHIA AÉREA: " + aviao_pista2.getCompanhia_aerea());
                 System.out.println("RESERVAS MINUTOS: " + aviao_pista2.getReservas_minutos());
+                System.out.println("===========================");
             } 
         }
             imprimirTemposMedios();
@@ -178,6 +184,7 @@ public class Aeroporto{
             System.out.println("N° PASSAGEIROS: " + pista_3.getAterrisagem().get(i).getNumero_passageiro());
             System.out.println("COMPANHIA AÉREA: " + pista_3.getAterrisagem().get(i).getCompanhia_aerea());
             System.out.println("RESERVAS MINUTOS: " + pista_3.getAterrisagem().get(i).getReservas_minutos());
+            System.out.println("===========================");
         }
 
         List<Aviao> novaLista = new ArrayList<>(pista_3.getAterrisagem());
@@ -234,10 +241,11 @@ public class Aeroporto{
             pista_3.setAterrisagem(novaLista);
             
 
-            System.out.println("Pista 3 - Decolagem");
+            System.out.println("\nPista 3 - Decolagem\n");
             System.out.println("N° PASSAGEIROS: " + aviao_pista3.getNumero_passageiro());
             System.out.println("COMPANHIA AÉREA: " + aviao_pista3.getCompanhia_aerea());
             System.out.println("RESERVAS MINUTOS: " + aviao_pista3.getReservas_minutos());
+            System.out.println("===========================");
         }
         else if (!pista_3.getDecolagem().isEmpty()) {
             aviao_pista3 = pista_3.getDecolagem().get(0);
@@ -247,10 +255,11 @@ public class Aeroporto{
             pista_3.setDecolagem(novaLista);
             
 
-            System.out.println("Pista 3 - Decolagem");
+            System.out.println("\nPista 3 - Decolagem\n");
             System.out.println("N° PASSAGEIROS: " + aviao_pista3.getNumero_passageiro());
             System.out.println("COMPANHIA AÉREA: " + aviao_pista3.getCompanhia_aerea());
             System.out.println("RESERVAS MINUTOS: " + aviao_pista3.getReservas_minutos());
+            System.out.println("===========================");
         } 
 
          //========Pista 1========================================
@@ -260,10 +269,11 @@ public class Aeroporto{
                 novaLista.remove(0);
                 pista_1.setPrioritarioEspecial(novaLista);
         
-                System.out.println("Pista 1 - Aterrisagem Especial");
+                System.out.println("\nPista 1 - Aterrisagem Especial\n");
                 System.out.println("N° PASSAGEIROS: " + aviao_pista1.getNumero_passageiro());
                 System.out.println("COMPANHIA AÉREA: " + aviao_pista1.getCompanhia_aerea());
                 System.out.println("RESERVAS MINUTOS: " + aviao_pista1.getReservas_minutos());
+                System.out.println("===========================");
         }         
         else if (pista_1.getSuporteDecolagem().size() <= pista_1.getSuporteAterrisagem().size()) {
            
@@ -273,10 +283,11 @@ public class Aeroporto{
                 novaLista.remove(0);
                 pista_1.setSuporteAterrisagem(novaLista);
         
-                System.out.println("Pista 1 - Aterrisagem");
+                System.out.println("\nPista 1 - Aterrisagem\n");
                 System.out.println("N° PASSAGEIROS: " + aviao_pista1.getNumero_passageiro());
                 System.out.println("COMPANHIA AÉREA: " + aviao_pista1.getCompanhia_aerea());
                 System.out.println("RESERVAS MINUTOS: " + aviao_pista1.getReservas_minutos());
+                System.out.println("===========================");
             } 
         } else {            
             if (pista_1.getSuporteDecolagem().size()!=0) {
@@ -286,10 +297,11 @@ public class Aeroporto{
                 novaLista.remove(0);
                 pista_1.setSuporteDecolagem(novaLista);
         
-                System.out.println("Pista 1 - Decolagem");
+                System.out.println("\nPista 1 - Decolagem\n");
                 System.out.println("N° PASSAGEIROS: " + aviao_pista1.getNumero_passageiro());
                 System.out.println("COMPANHIA AÉREA: " + aviao_pista1.getCompanhia_aerea());
                 System.out.println("RESERVAS MINUTOS: " + aviao_pista1.getReservas_minutos());
+                System.out.println("===========================");
             } 
         }
         
@@ -300,10 +312,11 @@ public class Aeroporto{
             novaLista.remove(0);
             pista_2.setPrioritarioEspecial(novaLista);
     
-            System.out.println("Pista 1 - Aterrisagem Especial");
+            System.out.println("\nPista 1 - Aterrisagem Especial\n");
             System.out.println("N° PASSAGEIROS: " + aviao_pista2.getNumero_passageiro());
             System.out.println("COMPANHIA AÉREA: " + aviao_pista2.getCompanhia_aerea());
             System.out.println("RESERVAS MINUTOS: " + aviao_pista2.getReservas_minutos());
+            System.out.println("===========================");
 
         } 
         else if (pista_2.getSuporteDecolagem().size() <= pista_2.getSuporteAterrisagem().size()) {
@@ -315,10 +328,11 @@ public class Aeroporto{
                 novaLista.remove(0);
                 pista_2.setSuporteAterrisagem(novaLista);
         
-                System.out.println("Pista 2 - Aterrisagem");
+                System.out.println("\nPista 2 - Aterrisagem\n");
                 System.out.println("N° PASSAGEIROS: " + aviao_pista2.getNumero_passageiro());
                 System.out.println("COMPANHIA AÉREA: " + aviao_pista2.getCompanhia_aerea());
                 System.out.println("RESERVAS MINUTOS: " + aviao_pista2.getReservas_minutos());
+                System.out.println("===========================");
             } 
         } else {
             List<Aviao> suporteDecolagemPista2 = pista_2.getSuporteDecolagem();
@@ -329,10 +343,11 @@ public class Aeroporto{
                 novaLista.remove(0);
                 pista_2.setSuporteDecolagem(novaLista);
         
-                System.out.println("Pista 2 - Decolagem");
+                System.out.println("\nPista 2 - Decolagem\n");
                 System.out.println("N° PASSAGEIROS: " + aviao_pista2.getNumero_passageiro());
                 System.out.println("COMPANHIA AÉREA: " + aviao_pista2.getCompanhia_aerea());
                 System.out.println("RESERVAS MINUTOS: " + aviao_pista2.getReservas_minutos());
+                System.out.println("===========================");
             } 
             imprimirTemposMedios();
         }
