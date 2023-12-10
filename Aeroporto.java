@@ -166,8 +166,7 @@ public class Aeroporto{
                 System.out.println("RESERVAS MINUTOS: " + aviao_pista2.getReservas_minutos());
             } 
         }
-
-
+            imprimirTemposMedios();
     }
 
     public void atualizarAeroportoNormal_2() {
@@ -335,10 +334,45 @@ public class Aeroporto{
                 System.out.println("COMPANHIA AÉREA: " + aviao_pista2.getCompanhia_aerea());
                 System.out.println("RESERVAS MINUTOS: " + aviao_pista2.getReservas_minutos());
             } 
+            imprimirTemposMedios();
         }
+    
+     private double calcularTempoMedioDecolagem() {
+        int totalDecolagens = pista_1.getTempoTotalDecolagem1() + pista_2.getTempoTotalDecolagem2() + pista_3.getDecolagem().size();
+
+        if (totalDecolagens > 0) {
+            double tempoTotalDecolagem = pista_1.getTempoTotalDecolagem1() + pista_2.getTempoTotalDecolagem2()
+                    + pista_3.getTempoTotalDecolagem();
+
+            return tempoTotalDecolagem / totalDecolagens;
+        } else {
+            return 0;
+        }
+    }
+
+    private double calcularTempoMedioAterrissagem() {
+        int totalAterrissagens = pista_1.getTempoTotalAterrisage1() + pista_2.getTempoTotalAterrisage2()
+                + pista_3.getAterrisagem().size();
+
+        if (totalAterrissagens > 0) {
+            double tempoTotalAterrissagem = pista_1.getTempoTotalAterrisage1() + pista_2.getTempoTotalAterrisage2()
+                    + pista_3.getTempoTotalAterrissagem();
+
+            return tempoTotalAterrissagem / totalAterrissagens;
+        } else {
+            return 0;
+        }
+    }
+
+    public void imprimirTemposMedios(){
+        double tempoMedioDecolagem = calcularTempoMedioDecolagem();
+        double tempoMedioAterrissagem = calcularTempoMedioAterrissagem();
+
+        System.out.println("Tempo Médio de Decolagem: " + tempoMedioDecolagem + " minutos");
+        System.out.println("Tempo Médio de Aterrissagem: " + tempoMedioAterrissagem + " minutos");
+
+    }    
         
-
-
     }
     //o tempo médio de espera para decolagem em cada fila
     public void rodarTempoTotal(){
