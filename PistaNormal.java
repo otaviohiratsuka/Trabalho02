@@ -3,6 +3,7 @@ import java.util.List;
 
 public class PistaNormal{
     private int limite_combustivel = 5;
+
     private List<Aviao> decolagem_1;
     private List<Aviao> decolagem_2;
 
@@ -25,11 +26,11 @@ public class PistaNormal{
 
 
     public PistaNormal(){
-        this.aterrisagem_1 = new ArrayList<Aviao>();
-        this.aterrisagem_2 = new ArrayList<Aviao>();
-        this.decolagem_1 = new ArrayList<Aviao>();
-        this.decolagem_2 = new ArrayList<Aviao>();
-        this.prioritario = new ArrayList<Aviao>();
+        aterrisagem_1 = new ArrayList<Aviao>();
+        aterrisagem_2 = new ArrayList<Aviao>();
+        decolagem_1 = new ArrayList<Aviao>();
+        decolagem_2 = new ArrayList<Aviao>();
+        prioritario = new ArrayList<Aviao>();
         this.suporte_aterrisagem = new ArrayList<Aviao>();
         this.suporte_decolagem = new ArrayList<Aviao>();
         this.tempo_total_aterrisage1 = 0;
@@ -54,6 +55,7 @@ public class PistaNormal{
     public void addAviaoDecolagem(Aviao av){
         if(decolagem_1.size() > decolagem_2.size()){
             decolagem_2.add(av);
+
         }
         else{
             decolagem_1.add(av);
@@ -67,27 +69,18 @@ public class PistaNormal{
    
 
     public void verificarPrioritario() {
-
         List<Aviao> copiaAterrisagem1 = new ArrayList<Aviao>(aterrisagem_1);
         List<Aviao> copiaAterrisagem2 = new ArrayList<Aviao>(aterrisagem_2);
-        List<Aviao> copiaPrioritario = new ArrayList<Aviao>(prioritario);
 
         for (Aviao aux : copiaAterrisagem1) {
-            if (aux.getNumero_passageiro() <= limite_combustivel) {
+            if (aux.getReservas_minutos() <= limite_combustivel) {
                 prioritario.add(aux);
                 aterrisagem_1.remove(aux);
             }
         }
     
         for (Aviao aux : copiaAterrisagem2) {
-            if (aux.getNumero_passageiro() <= limite_combustivel) {
-                prioritario.add(aux);
-                aterrisagem_2.remove(aux);
-            }
-        }
-
-        for (Aviao aux : copiaPrioritario) {
-            if (aux.getNumero_passageiro() <= limite_combustivel) {
+            if (aux.getReservas_minutos() <= limite_combustivel) {
                 prioritario.add(aux);
                 aterrisagem_2.remove(aux);
             }
@@ -141,6 +134,8 @@ public class PistaNormal{
         }
 
     }
+
+
     public void removerSuporteAterrisagem(Aviao av){
         suporte_aterrisagem.remove(av);
     }
