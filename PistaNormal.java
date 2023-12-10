@@ -14,6 +14,9 @@ public class PistaNormal{
     private List<Aviao> suporte_aterrisagem;
     
     private List<Aviao> prioritario; // percorrer 1 e 2, procurar risco(abaixo de 3min)
+
+    private List<Aviao> prioritario_especial; // percorrer 1 e 2, procurar risco(abaixo de 3min)
+
     
     private int tempo_total_aterrisage1;
     private int tempo_total_aterrisage2;
@@ -31,6 +34,7 @@ public class PistaNormal{
         decolagem_1 = new ArrayList<Aviao>();
         decolagem_2 = new ArrayList<Aviao>();
         prioritario = new ArrayList<Aviao>();
+        prioritario_especial = new ArrayList<Aviao>();
         this.suporte_aterrisagem = new ArrayList<Aviao>();
         this.suporte_decolagem = new ArrayList<Aviao>();
         this.tempo_total_aterrisage1 = 0;
@@ -61,13 +65,41 @@ public class PistaNormal{
             decolagem_1.add(av);
         }
     }
+    public void setPrioritarioEspecial(List<Aviao> av){
+        prioritario_especial = av;
+   }
+       public List<Aviao> getPrioritarioEspecial(){
+        return prioritario_especial;
+    }
+
+    public void verificarPrioridadeEspecial(){
+        List<Aviao> copiaAterrisagem1 = new ArrayList<Aviao>(aterrisagem_1);
+        List<Aviao> copiaAterrisagem2 = new ArrayList<Aviao>(aterrisagem_2);
+
+        for (Aviao aux : copiaAterrisagem1) {
+            if (aux.getPassageiro_prioridade()) {
+                prioritario_especial.add(aux);
+                aterrisagem_1.remove(aux);
+            }
+        }
+    
+        for (Aviao aux : copiaAterrisagem2) {
+            if (aux.getReservas_minutos() <= limite_combustivel) {
+                prioritario_especial.add(aux);
+                aterrisagem_2.remove(aux);
+            }
+        }
+    }
 
     //verifica as duas lista de aterrisagem pata ver sem tem pouco tempo
    public void setPrioritario(List<Aviao> av){
         prioritario = av;
    }
-   
+    public List<Aviao> getPrioritario(){
+        return prioritario;
+    }
 
+   
     public void verificarPrioritario() {
         List<Aviao> copiaAterrisagem1 = new ArrayList<Aviao>(aterrisagem_1);
         List<Aviao> copiaAterrisagem2 = new ArrayList<Aviao>(aterrisagem_2);
@@ -87,9 +119,6 @@ public class PistaNormal{
         }
     }
     
-    public List<Aviao> getPrioritario(){
-        return prioritario;
-    }
 
     public int totalAterrisagem(){
         return (aterrisagem_1.size()+aterrisagem_2.size());

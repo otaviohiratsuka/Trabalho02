@@ -174,6 +174,9 @@ public static boolean interacao = false;
         switch (opcao) {
             case 1:
             {
+                entradaArquivo(aeroporto);
+                aeroporto.rodarTempoTotal();
+                aeroporto.atualizarAeroportoEspecial();
                 break;
             }
             case 2:

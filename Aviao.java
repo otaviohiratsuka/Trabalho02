@@ -56,7 +56,7 @@ public class Aviao {
         this.reservas_minutos = reservas_minutos;
     }
 
-    public boolean isPassageiro_prioridade() {
+    public boolean getPassageiro_prioridade() {
         return passageiro_prioridade;
     }
 
