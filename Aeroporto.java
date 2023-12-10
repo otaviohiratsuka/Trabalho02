@@ -64,34 +64,37 @@ public class Aeroporto{
         pista_1.verificarPrioritario();
         pista_2.verificarPrioritario();
 
-
         pista_1.suporteAterrisagem();
         pista_1.suporteDecolagem();
                 
-        System.out.println(pista_1.getSuporteAterrisagem());
-        System.out.println(pista_2.getSuporteAterrisagem());
-
-        
         pista_2.suporteAterrisagem();
         pista_2.suporteDecolagem();
-
-        System.out.println(pista_1.getSuporteAterrisagem().get(0).getCompanhia_aerea());
-        System.out.println(pista_2.getSuporteAterrisagem().get(0).getCompanhia_aerea());
-
-        System.out.println(pista_1.getSuporteDecolagem());
-        System.out.println(pista_2.getSuporteDecolagem());
 
         pista_1.diminuirTempoAterrisagem();
         pista_2.diminuirTempoAterrisagem();
         pista_3.diminuirTempoAterrisagem();
 
+        transferenciaDeAviao();
 
          //========Pista 3========================================
         if (pista_3.getAterrisagem().size() >= 3) {
             atualizarAeroportoNormal_2();
             return;
         }
-        if (!pista_3.getDecolagem().isEmpty()) {
+        else if(pista_3.getAterrisagem().size()>0 && pista_3.getAterrisagem().size() <3){
+            aviao_pista3 = pista_3.getAterrisagem().get(0);
+
+            List<Aviao> novaLista = new ArrayList<>(pista_3.getAterrisagem());
+            novaLista.remove(0);
+            pista_3.setAterrisagem(novaLista);
+            
+
+            System.out.println("Pista 3 - Decolagem");
+            System.out.println("N° PASSAGEIROS: " + aviao_pista3.getNumero_passageiro());
+            System.out.println("COMPANHIA AÉREA: " + aviao_pista3.getCompanhia_aerea());
+            System.out.println("RESERVAS MINUTOS: " + aviao_pista3.getReservas_minutos());
+        }
+        else if (!pista_3.getDecolagem().isEmpty()) {
             aviao_pista3 = pista_3.getDecolagem().get(0);
 
             List<Aviao> novaLista = new ArrayList<>(pista_3.getDecolagem());
@@ -106,8 +109,8 @@ public class Aeroporto{
         } 
 
          //========Pista 1========================================
-        if (pista_1.getDecolagem_1().size() + pista_1.getDecolagem_2().size() < pista_1.getAterrisagem_1().size() + pista_1.getAterrisagem_2().size()) {
-           System.out.println("entrou na pista 1");
+                  
+        if (pista_1.getDecolagem_1().size() + pista_1.getDecolagem_2().size() <= pista_1.getAterrisagem_1().size() + pista_1.getAterrisagem_2().size()) {
            
             if (!pista_1.getSuporteAterrisagem().isEmpty()) {
                 aviao_pista1 = pista_1.getSuporteAterrisagem().get(0);
@@ -136,7 +139,7 @@ public class Aeroporto{
         }
         
         //========Pista 2========================================
-        if (pista_2.getDecolagem_1().size() + pista_2.getDecolagem_2().size() < pista_2.getAterrisagem_1().size() + pista_2.getAterrisagem_2().size()) {
+        if (pista_2.getDecolagem_1().size() + pista_2.getDecolagem_2().size() <= pista_2.getAterrisagem_1().size() + pista_2.getAterrisagem_2().size()) {
             List<Aviao> suporteAterrisagemPista2 = pista_2.getSuporteAterrisagem();
         
             if (!suporteAterrisagemPista2.isEmpty()) {
@@ -151,6 +154,8 @@ public class Aeroporto{
                 System.out.println("RESERVAS MINUTOS: " + aviao_pista2.getReservas_minutos());
             } 
         } else {
+             System.out.println("entrou na pista 1");
+
             List<Aviao> suporteDecolagemPista2 = pista_2.getSuporteDecolagem();
         
             if (!suporteDecolagemPista2.isEmpty()) {
@@ -165,8 +170,7 @@ public class Aeroporto{
                 System.out.println("RESERVAS MINUTOS: " + aviao_pista2.getReservas_minutos());
             } 
         }
-        
-        return;
+
 
     }
 

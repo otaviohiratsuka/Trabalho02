@@ -191,7 +191,6 @@ public static boolean interacao = false;
                 break;
         }
 
-        entrada.close();
 }
 
 
