@@ -61,6 +61,11 @@ public class PistaNormal{
     }
 
     //verifica as duas lista de aterrisagem pata ver sem tem pouco tempo
+   public void setPrioritario(List<Aviao> av){
+        prioritario = av;
+   }
+   
+
     public void verificarPrioritario() {
 
         List<Aviao> copiaAterrisagem1 = new ArrayList<Aviao>(aterrisagem_1);
@@ -125,6 +130,7 @@ public class PistaNormal{
                 aterrisagem_1.remove(0);
                 tempo_total_aterrisage1++;
             }
+
         }
         else{
             if (!aterrisagem_2.isEmpty()) {

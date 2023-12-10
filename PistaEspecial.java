@@ -16,6 +16,15 @@ public class PistaEspecial {
         tempo_total_aterrisagem = 0;
     }
 
+    public void diminuirTempoAterrisagem(){
+        for (Aviao aux : aterrisagem) {
+            int num = aux.getReservas_minutos();
+            aux.setReservas_minutos(num-1);
+        }
+    }
+
+
+
     public List<Aviao> getDecolagem() {
         return decolagem;
     }
@@ -36,6 +45,10 @@ public class PistaEspecial {
     }
     public void setAterrisagem(List<Aviao> aterrisagem) {
         this.aterrisagem = aterrisagem;
+    }
+
+    public void setAdicionarAterrisagem(List<Aviao> aterrisagem){
+        this.aterrisagem.addAll(aterrisagem);
     }
 
 

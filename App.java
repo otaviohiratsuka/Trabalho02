@@ -1,7 +1,10 @@
 import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.io.IOException;
+
 
 public class App {
 public static boolean interacao = false;
@@ -89,8 +92,12 @@ public static boolean interacao = false;
                     controlador++;
                 }
             }
+
+            //try (PrintWriter writer = new PrintWriter(new FileWriter("Aviao.txt", false))) {
+                //writer.print("");
+           // }
     
-        } catch (FileNotFoundException e) {
+        } catch (IOException ex) {
             System.out.println("Arquivo 'aviao.txt' não encontrado.");
         }
     }
@@ -118,6 +125,12 @@ public static boolean interacao = false;
         switch (opcao) {
             case 1:
             {
+                entradaArquivo(aeroporto);
+
+                aeroporto.rodarTempoTotal();
+                
+                aeroporto.atualizarAeroportoNormal();
+        
                 break;
             }
             case 2:
@@ -135,7 +148,7 @@ public static boolean interacao = false;
                 break;
 
         }
-        entrada.close();
+
 }
 
     public static void menu_com_desastre(Aeroporto aeroporto){
