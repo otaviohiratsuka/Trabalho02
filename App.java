@@ -93,9 +93,9 @@ public static boolean interacao = false;
                 }
             }
 
-            //try (PrintWriter writer = new PrintWriter(new FileWriter("Aviao.txt", false))) {
-                //writer.print("");
-           // }
+            try (PrintWriter writer = new PrintWriter(new FileWriter("Aviao.txt", false))) {
+                writer.print("");
+            }
     
         } catch (IOException ex) {
             System.out.println("Arquivo 'aviao.txt' não encontrado.");
