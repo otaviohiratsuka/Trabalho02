@@ -79,7 +79,7 @@ public class Aeroporto{
             atualizarAeroportoNormal_2();
             return;
         }
-        else if(pista_3.getAterrisagem().size()>0 && pista_3.getAterrisagem().size() <3){
+        else if(!pista_3.getAterrisagem().isEmpty()){
             aviao_pista3 = pista_3.getAterrisagem().get(0);
 
             List<Aviao> novaLista = new ArrayList<>(pista_3.getAterrisagem());
@@ -233,7 +233,7 @@ public class Aeroporto{
             atualizarAeroportoNormal_2();
             return;
         }
-        else if(pista_3.getAterrisagem().size()>0 && pista_3.getAterrisagem().size() <3){
+        else if(!pista_3.getAterrisagem().isEmpty()){
             aviao_pista3 = pista_3.getAterrisagem().get(0);
 
             List<Aviao> novaLista = new ArrayList<>(pista_3.getAterrisagem());
@@ -349,6 +349,7 @@ public class Aeroporto{
                 System.out.println("RESERVAS MINUTOS: " + aviao_pista2.getReservas_minutos());
                 System.out.println("===========================");
             } 
+        }
             imprimirTemposMedios();
         }
     
@@ -388,7 +389,6 @@ public class Aeroporto{
 
     }    
         
-    }
     //o tempo médio de espera para decolagem em cada fila
     public void rodarTempoTotal(){
         this.tempo_total++;
